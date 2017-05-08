@@ -1,0 +1,49 @@
+#ifndef POIINFO_H
+#define POIINFO_H
+#include "enumerations.h"
+#include "pointofinterest.h"
+#include "subimage.h"
+#include <utility>
+
+using namespace std;
+
+//базовый класс для хранения и работы с точками интереса в изображении
+//также хранит настройки для инициализации от изображения
+class BasePoiInfo
+{
+public:
+    BasePoiInfo();
+    ~BasePoiInfo();
+    //признак произведенной инициализации
+    bool isInit() const;
+    //признак установки параметров поиска точек интереса
+    bool isParametersSetted() const;
+    //возвращает общее число найденных точек интереса
+    int poiCount() const;
+    //возвращает вектор из не более чем poiMaxCount точек интереса
+    vector<PointOfInterest> poiVector(int poiMaxCount, int &poiCount) const;
+    //метод поиска точек интереса в изображении, инициализирующий объект
+    virtual void init(const SubImage &image);
+
+protected:
+    //пременные состояния
+    bool _isParametersSetted;
+    bool _isInit;
+    int _poiCount;
+    vector<PointOfInterest> _poiVector;
+    double _diameter;
+    //коэффициент для устойчивости фильтрации точек интереса
+    double _localMaxPoiQuot = 0.9;
+    //подсчитывает число точек интереса с целевой функцией большей,
+    //чем у точек с целевой функцией в окрестности радиусом radius
+    //изменяя маску mask и с учетом коэффициента limitQuot
+    int _localMaxPoiCoutAtRadius(double radius, vector<bool> &mask) const;
+    //обнуление значенй, не являющихся локальными максимумами в представлении
+    void _localMaxOnly(SubImage &poiImage, double radius,
+                       BorderMode mode) const;
+    //определяет, является ли точка локальным максимумом в представлении
+    bool _isLocalMax(SubImage &poiImage, int x, int y, double radius,
+                     BorderMode mode) const;
+};
+
+#endif // POIINFO_H

@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>554</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>CV Lab 04-07</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QGroupBox" name="processingGroupBox">
+      <property name="title">
+       <string>Метод обработки:</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="processTypeLabel">
+         <property name="text">
+          <string>Метод описания окрестности:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="processTypeComboBox"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="processPushButton">
+         <property name="text">
+          <string>Обработать</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>127</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QGroupBox" name="imageGroupBox">
+      <property name="title">
+       <string>Изображение:</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QScrollArea" name="imageScrollArea">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="imageScrollAreaContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>752</width>
+            <height>350</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="0" column="0">
+            <widget class="QLabel" name="imageLabel">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="fileMenu">
+    <property name="title">
+     <string>Файл</string>
+    </property>
+    <addaction name="openLeftImageAction"/>
+    <addaction name="openRightImageAction"/>
+    <addaction name="separator"/>
+    <addaction name="quitAction"/>
+   </widget>
+   <widget class="QMenu" name="transformMenu">
+    <property name="title">
+     <string>Преобразования</string>
+    </property>
+    <addaction name="noiseTransformAction"/>
+    <addaction name="brightTransformAction"/>
+    <addaction name="scaleTransformAction"/>
+    <addaction name="biasTransformAction"/>
+    <addaction name="rotateTransformAction"/>
+    <addaction name="transformSettingsAction"/>
+   </widget>
+   <widget class="QMenu" name="settingsMenu">
+    <property name="title">
+     <string>Параметры</string>
+    </property>
+    <widget class="QMenu" name="borderMenu">
+     <property name="title">
+      <string>Параметры обработки краев</string>
+     </property>
+     <addaction name="setBorderBlackAction"/>
+     <addaction name="setBorderCopyAction"/>
+     <addaction name="setBorderMirrorAction"/>
+     <addaction name="setBorderCycleAction"/>
+    </widget>
+    <widget class="QMenu" name="normalizationMenu">
+     <property name="title">
+      <string>Параметры нормализации</string>
+     </property>
+     <addaction name="setNoNormalizationAction"/>
+     <addaction name="setSingleNormalizationAction"/>
+     <addaction name="setComplexNormalizationAction"/>
+     <addaction name="setComplexTrimNormalizationAaction"/>
+    </widget>
+    <addaction name="borderMenu"/>
+    <addaction name="normalizationMenu"/>
+    <addaction name="subZeroOctaveAction"/>
+    <addaction name="harrysDetectorSettingsAction"/>
+    <addaction name="descriptorsSettingsAction"/>
+   </widget>
+   <addaction name="fileMenu"/>
+   <addaction name="transformMenu"/>
+   <addaction name="settingsMenu"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="openLeftImageAction">
+   <property name="text">
+    <string>Открыть изображение слева</string>
+   </property>
+  </action>
+  <action name="openRightImageAction">
+   <property name="text">
+    <string>Открыть изображение справа</string>
+   </property>
+  </action>
+  <action name="quitAction">
+   <property name="text">
+    <string>Выход</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="scaleTransformAction">
+   <property name="text">
+    <string>Масштабирование</string>
+   </property>
+  </action>
+  <action name="rotateTransformAction">
+   <property name="text">
+    <string>Поворот изображения</string>
+   </property>
+  </action>
+  <action name="noiseTransformAction">
+   <property name="text">
+    <string>Зашумление</string>
+   </property>
+  </action>
+  <action name="settingsAction">
+   <property name="text">
+    <string>Параметры детектора краев</string>
+   </property>
+  </action>
+  <action name="setBorderBlackAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Дополнять нулевыми пикселами</string>
+   </property>
+  </action>
+  <action name="setBorderCopyAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Копировать значение края</string>
+   </property>
+  </action>
+  <action name="setBorderMirrorAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Отображать зеркально</string>
+   </property>
+  </action>
+  <action name="setBorderCycleAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Зацикливать изображение</string>
+   </property>
+  </action>
+  <action name="brightTransformAction">
+   <property name="text">
+    <string>Изменение яркости</string>
+   </property>
+  </action>
+  <action name="biasTransformAction">
+   <property name="text">
+    <string>Сдвиг изображения</string>
+   </property>
+  </action>
+  <action name="harrysDetectorSettingsAction">
+   <property name="text">
+    <string>Параметры детектора Харриса</string>
+   </property>
+  </action>
+  <action name="transformSettingsAction">
+   <property name="text">
+    <string>Параметры преобразований</string>
+   </property>
+  </action>
+  <action name="setNoNormalizationAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Без нормализации</string>
+   </property>
+  </action>
+  <action name="setSingleNormalizationAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Раздельно по гистограммам</string>
+   </property>
+  </action>
+  <action name="setComplexNormalizationAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Комплексно по гистограммам</string>
+   </property>
+  </action>
+  <action name="descriptorsSettingsAction">
+   <property name="text">
+    <string>Общие параметры</string>
+   </property>
+  </action>
+  <action name="setComplexTrimNormalizationAaction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Комплексно с отсечением 0,2</string>
+   </property>
+  </action>
+  <action name="subZeroOctaveAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Строить пирамиду с -1 октавы</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
